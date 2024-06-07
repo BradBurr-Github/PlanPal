@@ -4,6 +4,7 @@
     "start": "^5.1.0"
   },
   "devDependencies": {
-    "@event-calendar/core": "^3.0.2"
+    "@event-calendar/core": "^3.0.2",
+    "@event-calendar/day-grid": "^3.0.2"
   }
 }
