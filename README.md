@@ -21,6 +21,6 @@ Please email us to contribute.
 ## Tests
 npm run test
 ## Questions
-If you have any questions about this Project or its Repository, I can be reached at <a href=mailto:support@planpal.com>brabur@yahoo.com</a>.  You can also find more of my work at <a href=https://github.com/BradBurr-Github/PlanPal>PlanPal</a>.
+If you have any questions about this Project or its Repository, I can be reached at <a href=mailto:support@planpal.com>support@planpal.com</a>.  You can also find more of my work at <a href=https://github.com/BradBurr-Github/PlanPal>PlanPal</a>.
 ## Acknowledgements
 None at this time.
