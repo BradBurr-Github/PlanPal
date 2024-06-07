@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "start": "^5.1.0"
+  },
+  "devDependencies": {
+    "@event-calendar/core": "^3.0.2"
+  }
+}
