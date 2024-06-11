@@ -1,1 +1,4 @@
-// SCHEMA.sql
+-- schema.sql
+
+DROP DATABASE IF EXISTS users_db;
+CREATE DATABASE users_db;
