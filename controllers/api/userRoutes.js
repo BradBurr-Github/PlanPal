@@ -1,10 +1,16 @@
+// TODO: add create and read routes -- test in insomnia
+
 const router = require('express').Router();
 // Import the User model from the models folder
 const { User } = require('../../models');
 
 // If a POST request is made to /api/users, a new user is created. The user id and logged in state is saved to the session within the request object.
 router.post('/', async (req, res) => {
-  try {
+
+// todo user.create which is similar to "INSERT INTO" in plain SQL { objet } object is what we want to pass along then newUser send as json object  
+
+// todo router.post () user.bulkCreate for seeding database 
+
     const userData = await User.create(req.body);
 
     req.session.save(() => {
@@ -13,7 +19,7 @@ router.post('/', async (req, res) => {
 
       res.status(200).json(userData);
     });
-  } catch (err) {
+ catch (err) {
     res.status(400).json(err);
   }
 });
@@ -61,5 +67,35 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+// todo router.get (/:id)
+// todo router.get (/first_name)
+
+// todo update
+
+// Updates book based on its isbn
+router.put('/:isbn', (req, res) => {
+    // Calls the update method on the Book model
+    User.update(
+      {
+        // All the fields you can update and the data attached to the request body.
+        username: req.body.username,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email_address: req.body.email_address,
+      },
+      {
+        // Gets the user based on the isbn given in the request parameters
+        where: {
+          
+        },
+      }
+    )
+      .then((updateUser) => {
+        // Sends the updated user as a json response
+        res.json(updateUser);
+      })
+      .catch((err) => res.json(err));
+  });
 
 module.exports = router;
