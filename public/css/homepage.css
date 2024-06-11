@@ -1,0 +1,7 @@
+/* Resets the box size of every element */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
