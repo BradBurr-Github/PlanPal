@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 // Utilizes the 'dotenv' package in order to load the .env file and sets the environment variables to the process.env object.
 require('dotenv').config();
-console.log(process.env)
+// console.log(process.env)
 
 // let sequelize;
 // Checks to see if the application is deployed. If DB_URL environment variable exists, then that is used. If not, it determines that you're on your local machine and utilizes the environment variables from the .env file to set up Sequelize. 
