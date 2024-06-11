@@ -6,7 +6,7 @@ const { User } = require('../../models');
 
 // If a POST request is made to /api/users, a new user is created. The user id and logged in state is saved to the session within the request object.
 router.post('/', async (req, res) => {
-
+ try {
 // todo user.create which is similar to "INSERT INTO" in plain SQL { objet } object is what we want to pass along then newUser send as json object  
 
 // todo router.post () user.bulkCreate for seeding database 
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
 
       res.status(200).json(userData);
     });
- catch (err) {
+  } catch (err) {
     res.status(400).json(err);
   }
 });
