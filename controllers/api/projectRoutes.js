@@ -1,40 +1,64 @@
-// const router = require('express').Router();
-// // Import the Project model from the models folder
-// const { Project } = require('../../models');
+const express = require('express');
+const eventCalendar = require('@nmp/event-calendar');
+const bodyParser = require('body-parser');
 
-// // If a POST request is made to /api/projects, a new project is created. If there is an error, the function returns with a 400 error. 
-// router.post('/', async (req, res) => {
-//   try {
-//     const newProject = await Project.create({
-//       ...req.body,
-//       user_id: req.session.user_id,
-//     });
+const app = express();
+app.use(bodyParser.json());
 
-//     res.status(200).json(newProject);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
+const calendarOptions = {
+  timezone: 'UTC',
+  dateFormat: 'YYYY-MM-DD',
+  timeFormat: 'HH:mm',
+  locale: 'en'
+};
 
-// // If a DELETE request is made to /api/projects/:id, that project is deleted. 
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const projectData = await Project.destroy({
-//       where: {
-//         id: req.params.id,
-//         user_id: req.session.user_id,
-//       },
-//     });
+const calendar = eventCalendar(calendarOptions);
 
-//     if (!projectData) {
-//       res.status(404).json({ message: 'No project found with this id!' });
-//       return;
-//     }
+// Get all events
+app.get('/events', (req, res) => {
+  try {
+    const events = calendar.getEvents();
+    res.status(200).json(events);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
-//     res.status(200).json(projectData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// Add a new event
+app.post('/events', (req, res) => {
+  try {
+    const newEvent = req.body;
+    calendar.addEvent(newEvent);
+    res.status(201).json(newEvent);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// Update an event
+app.put('/events/:id', (req, res) => {
+  try {
+    const updatedEvent = { ...req.body, id: req.params.id };
+    calendar.updateEvent(updatedEvent);
+    res.status(200).json(updatedEvent);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// Delete an event
+app.delete('/events/:id', (req, res) => {
+  try {
+    calendar.deleteEvent(req.params.id);
+    res.status(204).end();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 module.exports = router;
