@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+
 // create new user record and save session data for newly created user
 router.post('/', async (req, res) => {            // post request 
  try {
@@ -14,6 +15,7 @@ router.post('/', async (req, res) => {            // post request
       res.status(200).json(userData);
     });
   } catch (err) {
+
     res.status(400).json(err);                  // error handling
   }
 });
