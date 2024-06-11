@@ -1,18 +1,31 @@
 {
+  "name": "plan-pal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seeds/seed.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@event-calendar/build": "^3.0.2",
     "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
+    "@event-calendar/build": "^3.0.2",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
-    "node.js": "^0.0.1-security",
+    "express-session": "^1.17.1",
     "pg": "^8.12.0",
-    "sequelize": "^6.37.3",
-    "start": "^5.1.0"
+    "sequelize": "^6.37.3"
   },
   "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "prettier": "^2.1.2",
     "@event-calendar/core": "^3.0.2",
     "@event-calendar/day-grid": "^3.0.2"
   }
