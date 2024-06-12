@@ -31,7 +31,7 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password-signup').value.trim();
   
     if (name && email && password) {                                            // check to see if all 3 have values otherwise won't proceed
-      const response = await fetch('/api/users', {                              // todo: needs work! CANNOT GET /api/users error is it linked properly????
+      const response = await fetch('/api/users', {                              // todo: needs work! CANNOT GET /api/users error is it linked properly????  400 error code means user error 
         method: 'POST',
         body: JSON.stringify({ name, email, password }),                        // post request to /api/users in json format which should be added to user's api name,email,password
         headers: { 'Content-Type': 'application/json' },

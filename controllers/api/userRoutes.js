@@ -4,10 +4,12 @@ const { User } = require('../../models');
 
 // create new user record and save session data for newly created user
 router.post('/', async (req, res) => {            // post request 
- try {
+      // console.log(req.body)
+  try {
 
     const userData = await User.create(req.body);   // creating userData variable using model user and user inputs using req.body
-
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    console.log(userData.id);
     req.session.save(() => {                        // save session data
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -15,7 +17,7 @@ router.post('/', async (req, res) => {            // post request
       res.status(200).json(userData);
     });
   } catch (err) {
-
+    console.log(err)
     res.status(400).json(err);                  // error handling
   }
 });

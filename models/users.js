@@ -14,17 +14,17 @@ class User extends Model {
 // An `id` is automatically created by Sequelize, though best practice would be to define the primary key ourselves
 User.init(
     {
-        user_id: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,                           //primary key
-            autoincrement: true,                        // creates new id for new user
             allowNull: false,                           //must NOT be empty, must have a value
+            autoIncrement: true,                        // creates new id for new user
         },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        email_address: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {                                 // sequelize validator
