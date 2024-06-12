@@ -7,6 +7,11 @@ const sequelize = require('./config/connection');
 // const SequelizeStore = require('')
 const helpers = require('./utils/helpers');
 
+// Import model to sync tables with database
+// const User = require('./models/users');
+// const Event = require('./models/events');
+// const EventUser = require('./models/events-users');
+
 // set up handlebars custom helpers under utils folder ???
 
 // set up express
