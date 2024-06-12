@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { log } = require('console');
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
@@ -17,14 +18,15 @@ router.get('/', async (req,res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {                  // get request to /profile  authenticate before accessing
     try {
+      console.log('-------------------------HELLO--------------------------------------');
       // Find the logged in user based on the session ID
       const userData = await User.findByPk(req.session.user_id, {       // find user by primary key
         attributes: { exclude: ['password'] },                              // exclude password in query
-        include: [{ model: User }],
+       
       });
   
       const user = userData.get({ plain: true });                   // convert the Sequelize model instance to a plain JavaScript object    returns just the raw data.
-  
+      console.log(user)
       res.render('profile', {
         ...user,                                // spreads all the properties of the user object (which contains the user data fetched from the database) into the object being passed to the view
         logged_in: true             // based on whether the user is logged in or not it'll render the /profile
