@@ -1,24 +1,11 @@
-// import Calendar from '@event-calendar/core';
-// import DayGrid from '@event-calendar/day-grid';
+//fetch call to our events api route save the data as our events array
 
 console.log("hello profile.js")
-// let ec = new Calendar({
-//     target: document.getElementById('ec'),
-//     props: {
-//         plugins: [DayGridGrid],
-//         options: {
-//             view: 'DayGridWeek',
-//             events: [
-//                 // your list of events
-//             ]
-//         }
-//     }
-// });
 
 let ec = new EventCalendar(document.getElementById('ec'), {
     view: 'timeGridWeek',
     events: [
-        // your list of events
+        // your list of events array
         ]
 
         });
