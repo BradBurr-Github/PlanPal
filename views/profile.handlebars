@@ -1,4 +1,29 @@
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@3.0.2/event-calendar.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@event-calendar/build@3.0.2/event-calendar.min.js"></script>
+
+</head>
+
 <div>
     <h1>this is the Profile view</h1>
+<div id="ec"></div>
+    
 
 </div>
+
+<script>
+    import Calendar from '@event-calendar/core';
+    import TimeGrid from '@event-calendar/time-grid';
+
+    let plugins = [TimeGrid];
+    let options = {
+        view: 'timeGridWeek',
+        events: [
+            // your list of events
+        ]
+    };
+</script>
+
+<Calendar {plugins} {options} />
+
+<script src="./js/profile.js"></script>
