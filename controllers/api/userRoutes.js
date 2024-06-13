@@ -1,6 +1,21 @@
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
 const { User } = require('../../models');
 
+router.get('/', async (req, res) => {    
+  try {
+    // Get all users and JOIN with user data
+    const userData = await User.findAll({
+    });
+
+    // Serialize data so the template can read it
+    //const projects = projectData.map((project) => project.get({ plain: true }));
+
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
 
 // create new user record and save session data for newly created user
 router.post('/', async (req, res) => {            // post request 
