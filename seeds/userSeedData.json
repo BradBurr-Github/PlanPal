@@ -1,0 +1,32 @@
+[
+    {
+      "name": "Mickey",
+      "email": "mickey@gmail.com",
+      "password": "mickeyM0us3"
+    },
+    {
+      "name": "Minnie",
+      "email": "minnie@gmail.com",
+      "password": "minnieM0us3"
+    },
+    {
+      "name": "Donald",
+      "email": "donald@gmail.com",
+      "password": "d0n@1dDuck"
+    },
+    {
+      "name": "Goofy",
+      "email": "goofy@gmail.com",
+      "password": "g00fyD0g"
+    },
+    {
+      "name": "Daisy",
+      "email": "daisy@gmail.com",
+      "password": "d@1syDuck"
+    },
+    {
+      "name": "Scrooge",
+      "email": "scrooge@gmail.com",
+      "password": "scr00geDuck"
+    }
+]
