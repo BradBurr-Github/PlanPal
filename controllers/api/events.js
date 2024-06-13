@@ -8,3 +8,5 @@ router.get('/', async (req, res) => {
   //get current user from req.session.id include the events
   //return just events stringified as JSON
 })
+
+module.exports = router;
