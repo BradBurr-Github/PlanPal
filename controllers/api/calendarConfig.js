@@ -1,6 +1,8 @@
 //require the event calendar
 // app.js or server.js
 
+const router = require('express').Router();
+
 const express = require('express');
 const eventCalendar = require('@nmp/event-calendar');
 
@@ -36,3 +38,4 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+module.exports = router;
