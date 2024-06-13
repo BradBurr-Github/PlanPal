@@ -8,6 +8,6 @@ const userRoutes = require('./api/userRoutes');
 
 router.use('/api', apiRoutes);
 router.use('/', homeRoutes);
-// router.use('/users', userRoutes);
+router.use('/users', userRoutes);
 
 module.exports = router;
