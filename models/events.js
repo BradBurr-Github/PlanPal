@@ -8,7 +8,7 @@ class Event extends Model {}
 // An `id` is automatically created by Sequelize, though best practice would be to define the primary key ourselves
 Event.init(
     {
-        event_id: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,                           //primary key
             autoIncrement: true,                        // creates new id for new event
@@ -30,14 +30,22 @@ Event.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        organizer_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
-        },
+        // organizer_id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'user',
+        //         key: 'id',
+        //     },
+        // },
+        // attendees {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'user',
+        //         key: 'id',
+        //     },
+        // },
         isPublic: {
             type: DataTypes.BOOLEAN,
             allowNull: false,

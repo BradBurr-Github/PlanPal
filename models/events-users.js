@@ -8,21 +8,11 @@ class EventUser extends Model {}
 // An `id` is automatically created by Sequelize, though best practice would be to define the primary key ourselves
 EventUser.init(
     {
-        eventUser_id: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,                           //primary key
             autoIncrement: true,                        // creates new id for new eventUser
             allowNull: false,                           //must NOT be empty, must have a value
-        },
-        event_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            
         },
         confirmStatus: {
             type: DataTypes.INTEGER,
@@ -43,7 +33,7 @@ EventUser.init(
     }
 )
 
-module.exports = Event;
+module.exports = EventUser;
 
 // model becomes a postgres table when it syncs with a sequelize database
 
