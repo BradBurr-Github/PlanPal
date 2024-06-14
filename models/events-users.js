@@ -17,10 +17,12 @@ EventUser.init(
         event_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            
         },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            
         },
         confirmStatus: {
             type: DataTypes.INTEGER,
@@ -35,7 +37,7 @@ EventUser.init(
         // Link to database connection
         sequelize,
         freezeTableName: true,          //table name stays the same 
-        modelName: 'event',
+        modelName: 'eventUser',
         timestamps: false,
         underscored: true,
     }

@@ -1,0 +1,10 @@
+[
+    {
+      "name": "Disneyland Party",
+      "desc": "This is a PotLuck party for everyone.",
+      "date": "06-15-2024",
+      "durationMins": "60",
+      "organizer_id": "2",
+      "isPublic": true
+    }
+]
