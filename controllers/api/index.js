@@ -9,3 +9,4 @@ router.use('/events', eventRoutes);
 module.exports = router;
 
 //testing ignore
+console.log('ignore')
