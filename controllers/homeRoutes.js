@@ -44,6 +44,28 @@ router.get('/users/:id', async (req, res) => {
   }
 });
 
+// GET events for a specific user
+router.get('/users/:userId/events', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const client = await pool.connect();
+    const eventsQuery = `
+      SELECT * FROM events 
+      WHERE user_id = $1
+    `;
+    const eventsResult = await client.query(eventsQuery, [userId]);
+    client.release();
+
+    const events = eventsResult.rows;
+    res.json(events);
+  } catch (err) {
+    console.error('Error fetching events:', err);
+    res.status(500).json({ error: 'Error fetching events' });
+  }
+  console.log('------------ HELLO ----------------')
+});
+
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {                  // get request to /profile  authenticate before accessing
     try {
