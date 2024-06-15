@@ -20,4 +20,4 @@ EventUser.belongsTo(User);
 Event.hasMany(EventUser);
 EventUser.belongsTo(Event);
 
-module.exports = { User, Event }
+module.exports = { User, Event, EventUser }

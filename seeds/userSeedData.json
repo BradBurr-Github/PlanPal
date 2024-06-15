@@ -28,5 +28,35 @@
       "name": "Banya",
       "email": "banya@gmail.com",
       "password": "s31nF3ld"
+    },
+    {
+      "name": "NoSoup",
+      "email": "nosoup@gmail.com",
+      "password": "s31nF3ld"
+    },
+    {
+      "name": "BubbleBoy",
+      "email": "bubble@gmail.com",
+      "password": "s31nF3ld"
+    },
+    {
+      "name": "Frank",
+      "email": "frank@gmail.com",
+      "password": "s31nF3ld"
+    },
+    {
+      "name": "Estelle",
+      "email": "estelle@gmail.com",
+      "password": "s31nF3ld"
+    },
+    {
+      "name": "Peterman",
+      "email": "peterson@gmail.com",
+      "password": "s31nF3ld"
+    },
+    {
+      "name": "Vandelay",
+      "email": "vandelay@gmail.com",
+      "password": "s31nF3ld"
     }
 ]
