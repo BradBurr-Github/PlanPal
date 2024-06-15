@@ -30,8 +30,6 @@ router.get('/profile', withAuth, async (req, res) => {                  // get r
       const testData = JSON.stringify({name:"something"})
       res.render('profile', {
 
-        // testObj: encodeURIComponent(JSON.stringify({name:"test"})),
-        testData,
         ...user,                                // spreads all the properties of the user object (which contains the user data fetched from the database) into the object being passed to the view
         logged_in: true             // based on whether the user is logged in or not it'll render the /profile
       });
