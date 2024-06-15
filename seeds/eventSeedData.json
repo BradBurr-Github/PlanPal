@@ -6,18 +6,4 @@
       "durationMins": "60",
       "isPublic": true
     },
-    {
-        "name": "Disneyland Party",
-        "desc": "This is a PotLuck party for everyone.",
-        "date": "2024-06-13",
-        "durationMins": "60",
-        "isPublic": true
-      },
-      {
-        "name": "Disneyland Party",
-        "desc": "This is a PotLuck party for everyone.",
-        "date": "2024-06-13",
-        "durationMins": "60",
-        "isPublic": true
-      }
 ]

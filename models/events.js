@@ -10,9 +10,9 @@ Event.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            primaryKey: true,                           //primary key
-            autoIncrement: true,                        // creates new id for new event
-            allowNull: false,                           //must NOT be empty, must have a value
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false,
         },
         name: {
             type: DataTypes.STRING,
@@ -22,30 +22,14 @@ Event.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        date: {
-            type: DataTypes.DATEONLY,
+        startDateTime: {
+            type: DataTypes.DATE,
             allowNull: false,
         },
-        durationMins: {
-            type: DataTypes.INTEGER,
+        endDateTime: {
+            type: DataTypes.DATE,
             allowNull: false,
         },
-        // organizer_id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     references: {
-        //         model: 'user',
-        //         key: 'id',
-        //     },
-        // },
-        // attendees {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     references: {
-        //         model: 'user',
-        //         key: 'id',
-        //     },
-        // },
         isPublic: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
@@ -54,7 +38,7 @@ Event.init(
     {
         // Link to database connection
         sequelize,
-        freezeTableName: true,          //table name stays the same 
+        freezeTableName: true,
         modelName: 'event',
         timestamps: false,
         underscored: true,
@@ -62,6 +46,3 @@ Event.init(
 )
 
 module.exports = Event;
-
-// model becomes a postgres table when it syncs with a sequelize database
-
