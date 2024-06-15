@@ -12,7 +12,8 @@ PlanPal allows many users with the ablility to plan activities and events togeth
 7. [Acknowledgements](#acknowledgements)
 ## Installation
 npm install
-npm install dotenv --save
+npm install dotenv --
+npm dayjs
 
 ## Usage
 it is public

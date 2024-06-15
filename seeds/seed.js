@@ -82,7 +82,6 @@ const updateEventDatesInSeed = async () => {
 async function seedDatabase() {
   await sequelize.sync({ force: true });
   // Seed User Table
-  const hashResult = await hashUserSeedPassword();
   const users = await User.bulkCreate(userSeedData, {individualHooks:true, returning: true});
   const updateResult = await updateEventDatesInSeed();
   // Seed Events Table
