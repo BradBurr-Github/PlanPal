@@ -1,10 +1,59 @@
 [
     {
-      "name": "Disneyland Party",
+      "name": "Seinfeld Reunion",
       "desc": "This is a PotLuck party for everyone.",
-      "date": "06-15-2024",
-      "durationMins": "60",
-      "organizer_id": "2",
+      "startDateTime": "2024-06-15 10:00:00",
+      "endDateTime": "2024-06-15 11:00:00",
+      "isPublic": true
+    },
+    {
+      "name": "Premiere Show",
+      "desc": "Time to Shine.",
+      "startDateTime": "2024-06-15 10:00:00",
+      "endDateTime": "2024-06-15 11:00:00",
+      "isPublic": true
+    },
+    {
+      "name": "Watch Party",
+      "desc": "Get together.",
+      "startDateTime": "2024-06-15 10:00:00",
+      "endDateTime": "2024-06-15 11:00:00",
+      "isPublic": true
+    },
+    {
+      "name": "BBQ",
+      "desc": "BBQ and Pool party.",
+      "startDateTime": "2024-06-15 10:00:00",
+      "endDateTime": "2024-06-15 11:00:00",
+      "isPublic": true
+    },
+    {
+      "name": "Plan out Travel",
+      "desc": "Let's travel.",
+      "startDateTime": "2024-06-15 10:00:00",
+      "endDateTime": "2024-06-15 11:00:00",
+      "isPublic": true
+    },
+    {
+      "name": "Breakfast",
+      "desc": "Pancakes and Waffles.",
+      "startDateTime": "2024-06-15 10:00:00",
+      "endDateTime": "2024-06-15 11:00:00",
+      "isPublic": true
+    },
+    {
+      "name": "Luncheon",
+      "desc": "Fancy event.",
+      "startDateTime": "2024-06-15 10:00:00",
+      "endDateTime": "2024-06-15 11:00:00",
+      "isPublic": true
+    }
+    ,
+    {
+      "name": "Awards Show",
+      "desc": "Congrats!",
+      "startDateTime": "2024-06-15 10:00:00",
+      "endDateTime": "2024-06-15 11:00:00",
       "isPublic": true
     }
 ]
