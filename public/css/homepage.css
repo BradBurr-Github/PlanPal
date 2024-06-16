@@ -18,7 +18,7 @@ body {
   background-color: #f0f0f0;  */
 }
 
-.container {
+#container {
   display: flex;
   width: 80%;
   height: 60%;
@@ -30,10 +30,10 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    width: 100%; */
+    width: 100%;*/
 }
 
-.left-section, .right-section {
+.left-section, #right-section {
   flex: 1;
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@ body {
   max-width: 80%;
 }
 
-.right-section {
+#right-section {
   background: white;
   display: flex;
   flex-direction: column;
@@ -119,7 +119,7 @@ form button:hover {
   opacity: 0.9;
 }
 
-.options {
+#options {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
@@ -128,18 +128,18 @@ form button:hover {
 }
 
 @media (max-width: 768px) {
-  .container {
+  /* #container {
     flex-direction: column;
     height: auto;
     width: 90%;
-  }
+  } */
 
   .left-section {
     order: 2;
     padding: 1.5rem;
   }
 
-  .right-section {
+  #right-section {
     order: 1;
     padding: 1.5rem;
   }
