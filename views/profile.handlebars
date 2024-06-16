@@ -63,10 +63,12 @@
     let plugins = [TimeGrid];
     let options = {
         view: 'timeGridWeek',
-        events: [
-            // your list of events
-        ]
+        events: ['name', 'desc', 'startDateTime', 'endDateTime', 'isPublic', 'organizer_id']
     };
+
+    function updateOptions() {
+        options.slotDuration = '01:00';
+    }     
 </script>
 
 <Calendar {plugins} {options} />
