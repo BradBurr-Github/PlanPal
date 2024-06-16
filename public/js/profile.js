@@ -23,7 +23,6 @@ const getEvents = async () => {
     return []; 
   }
 };
-/// TESTING ------------------------------------------------------------------------------
 // Fetch events and update events array and calendar
 const fetchAndDisplayEvents = async () => {
   try {
@@ -42,13 +41,18 @@ const saveEvent = async () => {
   const name = document.getElementById("name").value.trim();
   const date = document.getElementById("date").value.trim();
   const desc = document.getElementById("description").value.trim();
-  const startDateTime = document.getElementById("startDateTime").value.trim();
-  const endDateTime = document.getElementById("endDateTime").value.trim();
+  const startTime = document.getElementById("startDateTime").value.trim();
+  const endTime = document.getElementById("endDateTime").value.trim();
+
+  let startDateTime = `${date}T${startTime}`;
+  let endDateTime = `${date}T${endTime}`;
+
+  console.log(startDateTime, endDateTime);
   
   if ( name, date, desc, startDateTime, endDateTime){
     const response = await fetch (`/api/events` , {
       method: 'POST',
-      body: JSON.stringify({ name, date, desc, startDateTime, endDateTime}),
+      body: JSON.stringify({ name, desc, startDateTime, endDateTime,}),
       headers: {'Content-Type': 'application/json'},
     });
     if (response.ok) {
@@ -111,18 +115,24 @@ document.getElementById("addEventForm").onsubmit = function(event) {
   const name = document.getElementById("name").value;
   const date = document.getElementById("date").value;
   const desc = document.getElementById("description").value;
-  const startDateTime = document.getElementById("startDateTime").value;
-  const endDateTime = document.getElementById("endDateTime").value;
+  const startTime = document.getElementById("startDateTime").value;
+  const endTime = document.getElementById("endDateTime").value;
+
+  let startDateTime = `${date}T${startTime}`;
+  let endDateTime = `${date}T${endTime}`;
+
+  console.log(startDateTime, endDateTime);
 
   const newEvent = { 
     name: name,
-    date: date,
+    // date: date,
     desc: desc,
     startDateTime: startDateTime,
     endDateTime: endDateTime,
    };
 
   saveEvent(newEvent);
+  fetchAndDisplayEvents();    
   console.log( newEvent );
   modal.style.display = "none";
 }
