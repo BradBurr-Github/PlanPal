@@ -80,7 +80,7 @@ const updateEventDatesInSeed = async () => {
 
 // Function to seed the Database
 async function seedDatabase() {
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: false });
   // Seed User Table
   const users = await User.bulkCreate(userSeedData, {individualHooks:true, returning: true});
   const updateResult = await updateEventDatesInSeed();

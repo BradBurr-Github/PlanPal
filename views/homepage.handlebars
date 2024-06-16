@@ -8,55 +8,63 @@
   
 </head>
 
-<body>
-  <div class = "welcome">
-  <header>
-    <h1>Welcome to PlanPal</h1>
-    </header>
+  <div class="row" id="container">
+
+    <div class="left-section">
+      <div>
+        <h1>Welcome to PlanPal!</h1>
+          <p>Try signing up to be able to keep track of your life or invite your friends to fun events! If you are already signed up then try loging in to see if your invited to anything!</p>
+      </div>
     </div>
+      <div id="right-section" class="forms-container">
+        <div id="loginForm">
+          <h2>USER LOGIN</h2>
+            <form class="form login-form">
 
+            <div class="form-group">
+               <label for="email-login"></label>
+              <input class="form-input" type="text" id="email-login" placeholder="Email" required>
+              </div>
 
-<div class="row" id="container">
-  <div class="col-md-6">
+              <div class="form-group">
+              <label for="password-login"></label>
+              <input class="form-input" type="password" id="password-login" placeholder="Password" required>
+              </div>
 
-    <h2>Login</h2>
+            <div class="form-group" id="options">
+              <button type="submit">LOGIN</button>  
+            </div> 
+            </form>
+        </div>
 
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="email-login">EMAIL:</label>
-        <input class="form-input" type="text" id="email-login" />
+        <div id="signupForm" >
+          <h2>SIGN UP</h2>
+            <form class="form signup-form" action="/signup" method="POST">
+
+            <div class="form-group">
+               <label for="name-signup"></label>
+              <input class="form-input" type="text" id="name-signup" placeholder="Username" required>
+              </div>
+
+              <div class="form-group">
+              <label for="email-signup"></label>
+              <input class="form-input" type="email" id="email-signup" placeholder="Email" required>
+              </div>
+
+              <div class="form-group">
+              <label for="password-signup"></label>
+              <input class="form-input" type="password" id="password-signup" placeholder="Password" required>
+              </div>
+
+              <div class="form-group">
+              <button type="submit">SIGN UP</button>
+              </div>
+
+            </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="password-login">PASSWORD:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">LOGIN</button>
-      </div>
-    </form>
+    </div>
   </div>
-  <div class="col-md-6">
-    <h2>Signup</h2>
-
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">NAME:</label>
-        <input class="form-input" type="text" id="name-signup" />
-      </div>
-      <div class="form-group">
-        <label for="email-signup">EMAIL:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">PASSWORD:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">SIGN UP</button>
-      </div>
-    </form>
-  </div>
-</div>
+</body>
 
 <script src="./js/login.js"></script>
-</body>

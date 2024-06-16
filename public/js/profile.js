@@ -1,7 +1,14 @@
+let ec = new EventCalendar(document.getElementById('ec'), {
+  view: 'timeGridWeek',
+  events: [],
+});
+
+var events = []
+
 //fetch call to our events api route save the data as our events array
 const getEvents = async () => {
   try {
-    const response = await fetch('/api/events', {
+    const response = await fetch(`/api/events`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -16,47 +23,44 @@ const getEvents = async () => {
     return []; 
   }
 };
-
-var events = []
-
 // Fetch events and update events array and calendar
 const fetchAndDisplayEvents = async () => {
   try {
     events = await getEvents();
     console.log('Fetched events:', events);
-    ec.setOptions({ events }); // Update events in calendar
+    // ec.setOptions('date', new Date()); // Update events in calendar
   } catch (error) {
     console.error('Error fetching and displaying events:', error);
   }
 };
-
 // Call fetchAndDisplayEvents initially to populate events
 fetchAndDisplayEvents();    
 
-console.log(events)
+const saveEvent = async () => {
 
-let ec = new EventCalendar(document.getElementById('ec'), {
-  view: 'timeGridWeek',
-  events: [],
-  });
+  const name = document.getElementById("name").value.trim();
+  const date = document.getElementById("date").value.trim();
+  const desc = document.getElementById("description").value.trim();
+  const startTime = document.getElementById("startDateTime").value.trim();
+  const endTime = document.getElementById("endDateTime").value.trim();
 
-const saveEvent = async (event) => {
-  try {
-    const response = await fetch('/api/events', {
+  let startDateTime = `${date}T${startTime}`;
+  let endDateTime = `${date}T${endTime}`;
+
+  console.log(startDateTime, endDateTime);
+  
+  if ( name, date, desc, startDateTime, endDateTime){
+    const response = await fetch (`/api/events` , {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(event)
+      body: JSON.stringify({ name, desc, startDateTime, endDateTime,}),
+      headers: {'Content-Type': 'application/json'},
     });
-    if (!response.ok) {
-      throw new Error('Failed to save event');
+    if (response.ok) {
+      alert("new event saved")
+    } else {
+      alert('Failed to create event');
     }
-    console.log('Event saved successfully');
-  } catch (error) {
-    console.error('Error saving event:', error);
-  }
-};
+}};
 
 const deleteEvent = async (eventId) => {
   try {
@@ -74,9 +78,6 @@ const deleteEvent = async (eventId) => {
     console.error('Error deleting event:', error);
   }
 };
-
-
-console.log("hello profile.js")
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -111,9 +112,28 @@ $('#submitEvents').on('submit', function(event){
 
 document.getElementById("addEventForm").onsubmit = function(event) {
   event.preventDefault();
-  const title = document.getElementById("title").value;
+  const name = document.getElementById("name").value;
   const date = document.getElementById("date").value;
-  const description = document.getElementById("description").value;
-  console.log({ title, date, description });
+  const desc = document.getElementById("description").value;
+  const startTime = document.getElementById("startDateTime").value;
+  const endTime = document.getElementById("endDateTime").value;
+
+  let startDateTime = `${date}T${startTime}`;
+  let endDateTime = `${date}T${endTime}`;
+
+  console.log(startDateTime, endDateTime);
+
+  const newEvent = { 
+    name: name,
+    // date: date,
+    desc: desc,
+    startDateTime: startDateTime,
+    endDateTime: endDateTime,
+   };
+
+  saveEvent(newEvent);
+  fetchAndDisplayEvents();    
+  console.log( newEvent );
   modal.style.display = "none";
-}});
+}
+});

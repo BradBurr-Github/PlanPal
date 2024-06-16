@@ -7,38 +7,41 @@ const Event = require('../../models/events');
 router.get('/', async (req, res) => {
   try {
     // Get all users and JOIN with user data
-    const eventData = await Event.findAll({
-    });
-
-    res.status(200).json(eventData);
+    const events = await Event.findAll();
+    res.status(200).json(events);
   } catch (err) {
     res.status(500).json(err);
   }
-  //get current user from req.session.id include the events
-  //return just events stringified as JSON
 })
 
-// //Route to get loggedIn users events
+//Route to get loggedIn users events
 router.get('/:id', async (req, res) => {
   try {
-    
-    const eventData = await Event.findByPk(req.params.id);
-    res.status(200).json(eventData);
+    const event = await Event.findByPk(req.params.id);
+    res.status(200).json(event);
   } catch (err) {
     res.status(500).json(err);
   }
-  //get current user from req.session.id include the events
-  //return just events stringified as JSON
 })
 
-router.post('/', async (req, res) => {            // post request 
+router.post('/', async (req, res) => {
   try {
-    const newEvent = await Event.create({...req.body,event_id:req.session.event_id});
+
+    if (!req.body.name || !req.body.desc || !req.body.startDateTime || !req.body.endDateTime ){
+      return res.status(400).json({ error: 'Missing required fields eventRoutes Line 31' });
+    }
+    console.log(req.body.startDateTime, req.body.endDateTime)
+    const newEvent = await Event.create(req.body)
+      req.session.save({
+      ...req.body,
+      event_id: req.session.event_id,
+      organizer_id: req.session.user_id
+    });
     res.status(200).json(newEvent);
-  //});
+    console.log(newEvent);
   } catch (err) {
   console.log(err)
-  res.status(400).json(err);                  // error handling
+  res.status(400).json(err);
   }
 });
 

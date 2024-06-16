@@ -27,15 +27,15 @@ User.init(
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {                                 // sequelize validator
-                isEmail: true,                          // validator checks if the value of the column is a valid email address format according to standard email address syntax.
+            validate: {
+                isEmail: true,                          
               },
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-              len: [8],                                 // sequelize validator to check that the password is exactly 8 characters long
+              len: [8], 
             },
           },
     },
