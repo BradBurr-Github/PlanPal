@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { log } = require('console');
+// const { log } = require('console');  IS THIS BEING USED?
 const { User, Event } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -21,6 +21,7 @@ router.get('/events/:userId', async (req, res) => {
     console.error(err); res.status(500).json({ message: 'Server Error' });
   } });
 
+// GET user profile by ID
 router.get('/users/:id', async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id, {
@@ -33,8 +34,11 @@ router.get('/users/:id', async (req, res) => {
       ],
     });
 
+    if (!userData) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
     const users = userData.get({ plain: true });
-    console.log(users)
     res.render('profile', {
       ...users,
       logged_in: req.session.logged_in
@@ -47,50 +51,59 @@ router.get('/users/:id', async (req, res) => {
 // GET events for a specific user
 router.get('/users/:userId/events', async (req, res) => {
   const userId = req.params.userId;
-
-  try {
-    const client = await pool.connect();
-    const eventsQuery = `
-      SELECT * FROM events 
-      WHERE user_id = $1
-    `;
-    const eventsResult = await client.query(eventsQuery, [userId]);
-    client.release();
-
-    const events = eventsResult.rows;
+try {
+  const events = await Event.findAll({ where: { userId: userId } });
     res.json(events);
   } catch (err) {
-    console.error('Error fetching events:', err);
-    res.status(500).json({ error: 'Error fetching events' });
+    res.status(500).json({ error: err.message });
   }
-  console.log('------------ HELLO ----------------')
+
+  // try {
+  //   const client = await pool.connect();
+  //   const eventsQuery = `
+  //     SELECT * FROM events 
+  //     WHERE user_id = $1
+  //   `;
+  //   const eventsResult = await client.query(eventsQuery, [userId]);
+  //   client.release();
+
+  //   const events = eventsResult.rows;
+  //   res.json(events);
+  // } catch (err) {
+  //   console.error('Error fetching events:', err);
+  //   res.status(500).json({ error: 'Error fetching events' });
+  // }
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {                  // get request to /profile  authenticate before accessing
+// GET user profile page
+router.get('/profile', withAuth, async (req, res) => {
     try {
-      console.log('-------------------------HELLO--------------------------------------');
       // Find the logged in user based on the session ID
-      const userData = await User.findByPk(req.session.user_id, {       // find user by primary key
-        attributes: { exclude: ['password'] },                              // exclude password in query
-        include:[{model:Event}]
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include:[{ model: Event }]
        
       });
-  
-      const user = userData.get({ plain: true });                   // convert the Sequelize model instance to a plain JavaScript object    returns just the raw data.
-      console.log(user)
+
+      if (!userData) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+      const user = userData.get({ plain: true });
       res.render('profile', {
-        ...user,                                // spreads all the properties of the user object (which contains the user data fetched from the database) into the object being passed to the view
-        logged_in: true             // based on whether the user is logged in or not it'll render the /profile
+        ...user,
+        logged_in: true
       });
     } catch (err) {
       res.status(500).json(err);
     }
   });
 
+// GET event deatils by ID
   router.get('/events/:id', async (req, res) => {
     try {
-      const eventsData = await Event.findByPk(req.params.id, {
+      const eventData = await Event.findByPk(req.params.id, {
         include: [
           {
             model: User,
@@ -98,9 +111,13 @@ router.get('/profile', withAuth, async (req, res) => {                  // get r
           },
         ],
       });
-      const events = eventsData.get({ plain: true });
+
+      if (!eventData) {
+        return res.status(404).json({ error: 'Event not found' });
+      }
+      const event = eventData.get({ plain: true });
       res.render('profile', {
-        ...events,
+        ...event,
         logged_in: req.session.logged_in
       });
     } catch (err) {
