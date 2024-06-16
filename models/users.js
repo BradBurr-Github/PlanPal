@@ -16,9 +16,9 @@ User.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            primaryKey: true,                           //primary key
-            allowNull: false,                           //must NOT be empty, must have a value
-            autoIncrement: true,                        // creates new id for new user
+            primaryKey: true,
+            allowNull: false,
+            autoIncrement: true,
         },
         name: {
             type: DataTypes.STRING,
@@ -41,7 +41,7 @@ User.init(
     },
     {
         // password is hashed before being stored in the database, enhancing security by protecting the passwords from being stored in plain text.
-            // return user data with hashed password for newUser
+        // return user data with hashed password for newUser
         hooks: {
             beforeCreate: async (newUserData) => {
               newUserData.password = await bcrypt.hash(newUserData.password, 10);
@@ -62,6 +62,3 @@ User.init(
 )
 
 module.exports = User;
-
-// model becomes a postgres table when it syncs with a sequelize database
-

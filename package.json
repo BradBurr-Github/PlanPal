@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "node seeds/seed.js",
+    "type": "module"
   },
   "keywords": [],
   "author": "",
@@ -16,12 +17,14 @@
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "connect-session-sequelize": "^7.1.7",
+    "dayjs": "^1.11.11",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "express-session": "^1.17.1",
     "pg": "^8.12.0",
     "sequelize": "^6.37.3"
+    
   },
   "devDependencies": {
     "@event-calendar/core": "^3.0.2",
