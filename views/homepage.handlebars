@@ -9,39 +9,66 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="row" id="container">
     <div class="left-section">
       <div>
         <h1>Welcome to PlanPal!</h1>
           <p>Try signing up to be able to keep track of your life or invite your friends to fun events! If you are already signed up then try loging in to see if your invited to anything!</p>
       </div>
     </div>
-    <div class="right-section">
-      <div class="forms-container">
+      <div id="right-section" class="forms-container">
         <div id="loginForm">
           <h2>USER LOGIN</h2>
-            <form>
-              <input type="text" placeholder="Username" required>
-              <input type="password" placeholder="Password" required>
-            <div class="options">
+            <form class="form login-form">
+
+            <div class="form-group">
+               <label for="email-login"></label>
+              <input class="form-input" type="text" id="email-login" placeholder="Email" required>
+              </div>
+
+              <div class="form-group">
+              <label for="password-login"></label>
+              <input class="form-input" type="password" id="password-login" placeholder="Password" required>
+              </div>
+
+            <div class="form-group" id="options">
               <button type="submit">LOGIN</button>  
             </div> 
             </form>
         </div>
+
         <div id="signupForm" >
           <h2>SIGN UP</h2>
-            <form>
-              <input type="text" placeholder="Username" required>
-              <input type="email" placeholder="Email" required>
-              <input type="password" placeholder="Password" required>
+            <form class="form signup-form" action="/signup" method="POST">
+
+            <div class="form-group">
+               <label for="name-signup"></label>
+              <input class="form-input" type="text" id="name-signup" placeholder="Username" required>
+              </div>
+
+              <div class="form-group">
+              <label for="email-signup"></label>
+              <input class="form-input" type="email" id="email-signup" placeholder="Email" required>
+              </div>
+
+              <div class="form-group">
+              <label for="password-signup"></label>
+              <input class="form-input" type="password" id="password-signup" placeholder="Password" required>
+              </div>
+
+              <div class="form-group">
               <button type="submit">SIGN UP</button>
+              </div>
+
             </form>
         </div>
       </div>
     </div>
   </div>
 </body>
-{{!-- <div class="row" id="container">
+
+{{!-- 
+<div class="row" id="container">
 =======
 
 <body>
