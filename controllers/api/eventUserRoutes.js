@@ -7,38 +7,34 @@ const EventUser = require('../../models/events-users.js');
 router.get('/', async (req, res) => {
   try {
     // Get all Event-User records
-    const eventUserData = await EventUser.findAll({
-    });
-
+    const eventUserData = await EventUser.findAll();
     res.status(200).json(eventUserData);
   } catch (err) {
     res.status(500).json(err);
   }
-  //get current user from req.session.id include the events
-  //return just events stringified as JSON
 })
 
 //Route to get loggedIn users events
 router.get('/:id', async (req, res) => {
   try {
-    
     const eventData = await Event.findByPk(req.params.id);
+    if (!eventData) {
     res.status(200).json(eventData);
+    }
   } catch (err) {
+    console.error(`Error fetching event with ID ${req.params.id}:`, err)
     res.status(500).json(err);
   }
-  //get current user from req.session.id include the events
-  //return just events stringified as JSON
 })
 
-router.post('/', async (req, res) => {            // post request 
+router.post('/', async (req, res) => {
   try {
-    const newEvent = await Event.create({...req.body,event_id:req.session.event_id});
-    res.status(200).json(newEvent);
-  //});
+    const newEvent = await Event.create({
+      ...req.body,
+      event_id: req.session.event_id});
   } catch (err) {
-  console.log(err)
-  res.status(400).json(err);                  // error handling
+    console.error('Error creating new event:', err);  
+    res.status(400).json({ error: 'Failed to create new event' });
   }
 });
 

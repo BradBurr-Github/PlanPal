@@ -3,7 +3,11 @@ body {
     background-color: hotpink;
 }
 
-.ec {
+#ec {
     --ec-bg-color: #fe00ae;
     --ec-text-color: #3d10df;
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
   }

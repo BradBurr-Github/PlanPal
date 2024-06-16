@@ -1,8 +1,4 @@
-//require the event calendar
-// app.js or server.js
-
 const router = require('express').Router();
-
 const express = require('express');
 const eventCalendar = require('@nmp/event-calendar');
 
@@ -20,13 +16,13 @@ const calendarOptions = {
 const calendar = eventCalendar(calendarOptions);
 
 // Example endpoint to get calendar events
-app.get('/events', (req, res) => {
+router.get('/events', (req, res) => {
   const events = calendar.getEvents();
   res.json(events);
 });
 
 // Example endpoint to add a new event
-app.post('/events', (req, res) => {
+router.post('/events', (req, res) => {
   const newEvent = req.body;
   calendar.addEvent(newEvent);
   res.status(201).json(newEvent);
