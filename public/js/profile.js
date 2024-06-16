@@ -23,7 +23,7 @@ const getEvents = async () => {
     return []; 
   }
 };
-
+/// TESTING ------------------------------------------------------------------------------
 // Fetch events and update events array and calendar
 const fetchAndDisplayEvents = async () => {
   try {
