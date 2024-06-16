@@ -27,13 +27,15 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
 
-    // if (!req.body.name || !req.body.desc || !req.body.startDateTime || !req.body.endDateTime){
-    //   return res.status(400).json({ error: 'Missing required fields eventRoutes Line 31' });
-    // }
+    if (!req.body.name || !req.body.desc || !req.body.startDateTime || !req.body.endDateTime ){
+      return res.status(400).json({ error: 'Missing required fields eventRoutes Line 31' });
+    }
+    console.log(req.body.startDateTime, req.body.endDateTime)
     const newEvent = await Event.create(req.body)
       req.session.save({
       ...req.body,
-      event_id: req.session.event_id
+      event_id: req.session.event_id,
+      organizer_id: req.session.user_id
     });
     res.status(200).json(newEvent);
     console.log(newEvent);
