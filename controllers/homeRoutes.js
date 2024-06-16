@@ -69,7 +69,7 @@ router.get('/users/:userId/events', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {                  // get request to /profile  authenticate before accessing
     try {
-      console.log('-------------------------HELLO--------------------------------------');
+      console.log('-------------------------HELLO-----------------------------------');
       // Find the logged in user based on the session ID
       const userData = await User.findByPk(req.session.user_id, {       // find user by primary key
         attributes: { exclude: ['password'] },                              // exclude password in query
