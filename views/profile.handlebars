@@ -5,6 +5,7 @@
 
 </head>
 
+{{!-- <body class="ec-dark"> --}}
 <div>
       <div class="row" id ="header">
         <header>
@@ -53,13 +54,15 @@
           <textarea id="description" name="description"></textarea>
         </div>
         <br>
-        {{!-- <div>
-          <label for="isPublic" id="isPublic">Make this public?</label>
-          <input type="radio" name="radio">
-          <label for="no">No</label>
-          <input type="radio" name="radio">
-          <label for="yes">Yes</label> --}}
-        {{!-- </div> --}}
+        <div>
+          <label for="isPublic">Make this public?</label>
+          <label>
+            <input type="radio" name="choice" id="optNo" value="1"> No
+          </label>
+          <label>
+            <input type="radio" name="choice" id="optYes" value="2"> Yes
+          </label>
+        </div>
         <br>
         <div id="submitdiv">
           <button type="submit">Add Event</button>
@@ -73,18 +76,34 @@
 
 </div>
 
+{{!-- </body> --}}
+
 <script>
     import Calendar from '@event-calendar/core';
     import TimeGrid from '@event-calendar/time-grid';
 
+    let ec;
     let plugins = [TimeGrid];
     let options = {
         view: 'timeGridWeek',
-        eventSources: [{ events: fetchAndDisplayEvents() {
+        eventSources: [{events: fetchAndDisplayEvents() {
             console.log('fetching...');
             return [];
-        }}]
-        }
+        }]}
+    };
+
+    function invokeMethod() {
+        ec.refetchEvents();
+        ec.render();
+        getEvents()
+        addEvent( event )
+    }
+
+     function updateOptions() {
+        options.slotDuration = '01:00';
+    }
+
+    function (info) {}
 
 </script>
 

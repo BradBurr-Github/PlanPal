@@ -32,7 +32,8 @@ Event.init(
         },
         isPublic: {
             type: DataTypes.BOOLEAN,
-            // allowNull: true,
+            allowNull: true,
+            defaultValue: false
           },
     },
     {
