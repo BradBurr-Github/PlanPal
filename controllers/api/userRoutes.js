@@ -57,6 +57,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//If a POST request is mad to /api/users/logout, the function checkes the logged_in state in the request.session object and destroys that session if logged_in is true.
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
