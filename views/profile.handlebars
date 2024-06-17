@@ -49,13 +49,15 @@
           <textarea id="description" name="description"></textarea>
         </div>
         <br>
-        {{!-- <div>
-          <label for="isPublic" id="isPublic">Make this public?</label>
-          <input type="radio" name="radio">
-          <label for="no">No</label>
-          <input type="radio" name="radio">
-          <label for="yes">Yes</label> --}}
-        {{!-- </div> --}}
+        <div>
+          <label for="isPublic">Make this public?</label>
+          <label>
+            <input type="radio" name="choice" id="optNo" value="1"> No
+          </label>
+          <label>
+            <input type="radio" name="choice" id="optYes" value="2"> Yes
+          </label>
+        </div>
         <br>
         <div id="submitdiv">
           <button type="submit">Add Event</button>
