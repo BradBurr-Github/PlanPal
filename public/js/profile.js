@@ -151,7 +151,8 @@ document.getElementById("addEventForm").onsubmit = function(event) {
    };
 
   saveEvent(newEvent);
-  fetchAndDisplayEvents();    
+  fetchAndDisplayEvents();  
+  addEventForm.reset();  
   console.log( newEvent );
   modal.style.display = "none";
 }
@@ -175,4 +176,3 @@ let ec = new EventCalendar(document.getElementById('ec'), {
     // } 
   ],
 });
-
