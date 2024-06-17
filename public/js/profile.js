@@ -30,23 +30,35 @@ const fetchAndDisplayEvents = async () => {
   }
 };
 
-const saveEvent = async () => {
+const saveEvent = async () => { 
 
   const name = document.getElementById("name").value.trim();
   const date = document.getElementById("date").value.trim();
   const desc = document.getElementById("description").value.trim();
   const startTime = document.getElementById("startDateTime").value.trim();
   const endTime = document.getElementById("endDateTime").value.trim();
+  const radioButtons = document.querySelectorAll('input[name="choice"]');
 
+  let isPublic = false;
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      if( radioButton.id === 'optYes' ) {
+        isPublic = true;
+      }
+      else {
+        isPublic = false;
+      }
+      break;
+    }
+  }
+  
   let startDateTime = `${date}T${startTime}`;
-  let endDateTime = `${date}T${endTime}`;
-
-  console.log(startDateTime, endDateTime);
+  let endDateTime = `${date}T${endTime}`;  
   
   if ( name, date, desc, startDateTime, endDateTime){
     const response = await fetch (`/api/events` , {
       method: 'POST',
-      body: JSON.stringify({ name, desc, startDateTime, endDateTime,}),
+      body: JSON.stringify({ name, desc, startDateTime, endDateTime, isPublic,}),
       headers: {'Content-Type': 'application/json'},
     });
     if (response.ok) {
@@ -111,18 +123,31 @@ document.getElementById("addEventForm").onsubmit = function(event) {
   const desc = document.getElementById("description").value;
   const startTime = document.getElementById("startDateTime").value;
   const endTime = document.getElementById("endDateTime").value;
+  const radioButtons = document.querySelectorAll('input[name="choice"]');
 
   let startDateTime = `${date}T${startTime}`;
   let endDateTime = `${date}T${endTime}`;
+ 
+  let isPublic = false;
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      if( radioButton.id === 'optYes' ) {
+        isPublic = true;
+      }
+      else {
 
-  console.log(startDateTime, endDateTime);
+        isPublic = false;
+      }
+      break;
+    }
+  }
 
   const newEvent = { 
     name: name,
-    // date: date,
     desc: desc,
     startDateTime: startDateTime,
     endDateTime: endDateTime,
+    isPublic: isPublic
    };
 
   saveEvent(newEvent);
