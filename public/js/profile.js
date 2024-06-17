@@ -1,3 +1,11 @@
+// Global EventCaledar Object
+let calendarId = 0;
+let eventsInDB = [];
+let userColors = ['blue','green','purple'];
+let calendarObject = new EventCalendar(document.getElementById('ec'), {
+  view: 'timeGridWeek',
+  events: []
+});
 
 //fetch call to our events api route save the data as our events array
 const getEvents = async () => {
@@ -21,16 +29,41 @@ const getEvents = async () => {
 // Fetch events and update events array and calendar
 const fetchAndDisplayEvents = async () => {
   try {
-
     events = await getEvents();
     console.log('Fetched events:', events);
 
+    // Get all of the events from teh DB and add them to the Global eventsInDB array
+    let userColor = 'blue';
+    eventsInDB.length = 0;
+    for(let i=0; i<events.length; i++) {
+      if(events[i].organizer_id == 2) {
+        userColor = userColors[1]; }
+      else if(events[i].organizer_id == 3) {
+        userColor = userColors[2]; }
+      const event = {title: events[i].name,
+                     start: events[i].startDateTime,
+                     end: events[i].endDateTime,
+                     backgroundColor: userColor };
+      eventsInDB.push(event);
+    }
+
+    // Drop the current calendar object and create a new one
+    document.getElementById('ec').remove();
+    const newCalendarDiv = document.createElement('div');
+    newCalendarDiv.id = 'ec';
+    document.getElementById('calendar').appendChild(newCalendarDiv);
+
+    // Create a new calendarObject
+    calendarObject = new EventCalendar(document.getElementById('ec'), {
+      view: 'timeGridWeek',
+      events: [...eventsInDB]
+    });
   } catch (error) {
     console.error('Error fetching and displaying events:', error);
   }
 };
 
-const saveEvent = async () => { 
+const saveEvent = async () => {
 
   const name = document.getElementById("name").value.trim();
   const date = document.getElementById("date").value.trim();
@@ -52,9 +85,25 @@ const saveEvent = async () => {
     }
   }
   
-  let startDateTime = `${date}T${startTime}`;
-  let endDateTime = `${date}T${endTime}`;  
-  
+  let initSDateTime = `${date}T${startTime}`;
+  let initEDateTime = `${date}T${endTime}`;  
+  // Offset for MST Date Time zone
+  const utcSDateTime = new Date(initSDateTime);
+  const utcEDateTime = new Date(initEDateTime);
+  utcSDateTime.setHours(utcSDateTime.getHours() - 6);
+  utcEDateTime.setHours(utcEDateTime.getHours() - 6);
+  const year = utcSDateTime.getFullYear();
+  const month = ('0' + (utcSDateTime.getMonth() + 1)).slice(-2); // Months are zero based
+  const day = ('0' + utcSDateTime.getDate()).slice(-2);
+  let hours = ('0' + utcSDateTime.getHours()).slice(-2);
+  let minutes = ('0' + utcSDateTime.getMinutes()).slice(-2);
+  let seconds = ('0' + utcSDateTime.getSeconds()).slice(-2);
+  const startDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  hours = ('0' + utcEDateTime.getHours()).slice(-2);
+  minutes = ('0' + utcEDateTime.getMinutes()).slice(-2);
+  seconds = ('0' + utcEDateTime.getSeconds()).slice(-2);
+  const endDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
   if ( name, date, desc, startDateTime, endDateTime){
     const response = await fetch (`/api/events` , {
       method: 'POST',
@@ -62,9 +111,9 @@ const saveEvent = async () => {
       headers: {'Content-Type': 'application/json'},
     });
     if (response.ok) {
-      alert("new event saved")
+      //alert("New event created.")
     } else {
-      alert('Failed to create event');
+      alert('Failed to create event.');
     }
 }};
 
@@ -125,8 +174,24 @@ document.getElementById("addEventForm").onsubmit = function(event) {
   const endTime = document.getElementById("endDateTime").value;
   const radioButtons = document.querySelectorAll('input[name="choice"]');
 
-  let startDateTime = `${date}T${startTime}`;
-  let endDateTime = `${date}T${endTime}`;
+  let initSDateTime = `${date}T${startTime}`;
+  let initEDateTime = `${date}T${endTime}`;  
+  // Offset for MST Date Time zone
+  const utcSDateTime = new Date(initSDateTime);
+  const utcEDateTime = new Date(initEDateTime);
+  utcSDateTime.setHours(utcSDateTime.getHours() - 6);
+  utcEDateTime.setHours(utcEDateTime.getHours() - 6);
+  const year = utcSDateTime.getFullYear();
+  const month = ('0' + (utcSDateTime.getMonth() + 1)).slice(-2); // Months are zero based
+  const day = ('0' + utcSDateTime.getDate()).slice(-2);
+  let hours = ('0' + utcSDateTime.getHours()).slice(-2);
+  let minutes = ('0' + utcSDateTime.getMinutes()).slice(-2);
+  let seconds = ('0' + utcSDateTime.getSeconds()).slice(-2);
+  const startDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  hours = ('0' + utcEDateTime.getHours()).slice(-2);
+  minutes = ('0' + utcEDateTime.getMinutes()).slice(-2);
+  seconds = ('0' + utcEDateTime.getSeconds()).slice(-2);
+  const endDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
  
   let isPublic = false;
   for (const radioButton of radioButtons) {
@@ -157,22 +222,4 @@ document.getElementById("addEventForm").onsubmit = function(event) {
 }
 });
 
-
-let ec = new EventCalendar(document.getElementById('ec'), {
-  view: 'timeGridWeek',
-  events: [
-
-    fetchAndDisplayEvents()
-    // { 
-    //   start: '2024-06-13T10:00:00',
-    // end: '2024-06-13T12:00:00', 
-    // title: 'Event 1' 
-    // },
-    // { 
-    //   start: '2024-06-14T14:00:00', 
-    //   end: '2024-06-14T16:00:00', 
-    //   title: 'Event 2' 
-    // } 
-  ],
-});
-
+fetchAndDisplayEvents();
