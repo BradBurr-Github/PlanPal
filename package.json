@@ -23,8 +23,7 @@
     "express-handlebars": "^7.1.2",
     "express-session": "^1.17.1",
     "pg": "^8.12.0",
-    "sequelize": "^6.37.3",
-    "start": "^5.1.0"
+    "sequelize": "^6.37.3"
   },
   "devDependencies": {
     "@event-calendar/core": "^3.0.2",
