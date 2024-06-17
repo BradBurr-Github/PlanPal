@@ -57,7 +57,7 @@
         <div>
           <label for="isPublic">Make this public?</label>
           <label>
-            <input type="radio" name="choice" id="optNo" value="1"> No
+            <input type="radio" name="choice" id="optNo" value="1" checked> No
           </label>
           <label>
             <input type="radio" name="choice" id="optYes" value="2"> Yes
@@ -76,7 +76,9 @@
     </div>
   </div>
 
-  <div id="ec"></div>
+  <div id="calendar" style="font-family: Arial, sans-serif; font-size: 14px;" ">
+    <div id="ec"></div>      
+  </div>
 
 </div>
 
@@ -103,7 +105,7 @@
         addEvent( event )
     }
 
-     function updateOptions() {
+    function updateOptions() {
         options.slotDuration = '01:00';
     }
 
