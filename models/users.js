@@ -1,6 +1,6 @@
 const { Model , DataTypes } = require('sequelize');
 const sequelize = require ('../config/connection');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 // create new sequelize model for users
 // verify if a provided password matches the hashed password stored in the database for a particular user
