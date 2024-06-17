@@ -1,9 +1,3 @@
-let ec = new EventCalendar(document.getElementById('ec'), {
-  view: 'timeGridWeek',
-  events: [],
-});
-
-var events = []
 
 //fetch call to our events api route save the data as our events array
 const getEvents = async () => {
@@ -20,21 +14,21 @@ const getEvents = async () => {
     return response.json(); 
   } catch (error) {
     console.error('Error fetching events:', error);
-    return []; 
+    return [``]; 
   }
 };
+
 // Fetch events and update events array and calendar
 const fetchAndDisplayEvents = async () => {
   try {
+
     events = await getEvents();
     console.log('Fetched events:', events);
-    // ec.setOptions('date', new Date()); // Update events in calendar
+
   } catch (error) {
     console.error('Error fetching and displaying events:', error);
   }
 };
-// Call fetchAndDisplayEvents initially to populate events
-fetchAndDisplayEvents();    
 
 const saveEvent = async () => {
 
@@ -137,3 +131,23 @@ document.getElementById("addEventForm").onsubmit = function(event) {
   modal.style.display = "none";
 }
 });
+
+
+let ec = new EventCalendar(document.getElementById('ec'), {
+  view: 'timeGridWeek',
+  events: [
+
+    fetchAndDisplayEvents()
+    // { 
+    //   start: '2024-06-13T10:00:00',
+    // end: '2024-06-13T12:00:00', 
+    // title: 'Event 1' 
+    // },
+    // { 
+    //   start: '2024-06-14T14:00:00', 
+    //   end: '2024-06-14T16:00:00', 
+    //   title: 'Event 2' 
+    // } 
+  ],
+});
+
