@@ -14,9 +14,9 @@ PlanPal allows many users with the ablility to plan activities and events togeth
 
 ## Installation
 1. NPM install
-A. @event-calendar/build
-B. @event-calendar/core
-C. @event-calendar/day-grid
+ - @event-calendar/build
+ -  @event-calendar/core
+ - @event-calendar/day-grid
 2. DayJS
 3. dotenv
 4. Express
