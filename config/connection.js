@@ -4,8 +4,12 @@ const Sequelize = require('sequelize');
 // Utilizes the 'dotenv' package in order to load the .env file and sets the environment variables to the process.env object.
 require('dotenv').config();
 
-const sequelize = new Sequelize(
-    process.env.DB_NAME,
+let sequelize
+
+  if (process.env.DB_URL) {
+    sequelize = new Sequelize(process.env.DB_URL);
+  }else {
+   sequelize = new Sequelize ( process.env.DB_NAME,
     process.env.DB_USER,
     process.env.DB_PASSWORD,
     {
@@ -13,5 +17,5 @@ const sequelize = new Sequelize(
       dialect: 'postgres'
     }
   );
-
+  }
 module.exports = sequelize;
