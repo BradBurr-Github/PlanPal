@@ -7,7 +7,6 @@ const eventSeedData = require('./eventSeedData.json');
 
 // Values of Users and Events added
 let usersAdded = [];
-let eventsAdded = [];
 
 // Function to hash a Password
 const hashPassword = async (password) => {

@@ -111,7 +111,6 @@ const saveEvent = async () => {
       headers: {'Content-Type': 'application/json'},
     });
     if (response.ok) {
-      //alert("New event created.")
     } else {
       alert('Failed to create event.');
     }
@@ -162,7 +161,6 @@ window.onclick = function(event) {
 $('#submitEvents').on('submit', function(event){
   event.preventDefault();
   $('#addEventModal').hide();
-  // Process form data here
 });
 
 document.getElementById("addEventForm").onsubmit = function(event) {
@@ -175,7 +173,8 @@ document.getElementById("addEventForm").onsubmit = function(event) {
   const radioButtons = document.querySelectorAll('input[name="choice"]');
 
   let initSDateTime = `${date}T${startTime}`;
-  let initEDateTime = `${date}T${endTime}`;  
+  let initEDateTime = `${date}T${endTime}`; 
+   
   // Offset for MST Date Time zone
   const utcSDateTime = new Date(initSDateTime);
   const utcEDateTime = new Date(initEDateTime);

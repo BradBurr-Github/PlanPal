@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const User = require('../../models/users');
 const Event = require('../../models/events');
 const EventUser = require('../../models/events-users.js');
 

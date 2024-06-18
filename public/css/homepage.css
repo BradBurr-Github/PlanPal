@@ -14,8 +14,6 @@ body {
   align-items: center;
   height: 100vh; 
   background: linear-gradient(90deg, rgba(75,0,130,1) 0%, rgba(255,0,255,1) 100%);
-  /* color: #333;
-  background-color: #f0f0f0;  */
 }
 
 #container {
@@ -96,7 +94,6 @@ form input {
 
 form button {
   padding: 0.75rem;
-  /* background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%); */
   background: #663399;
   border: none;
   border-radius: 5px;
@@ -109,7 +106,6 @@ form button {
 }
 
 form button:hover {
-  /* background: linear-gradient(135deg, #ff4b2b 0%, #ff416c 100%); */
   opacity: 0.9;
 }
 
@@ -122,11 +118,6 @@ form button:hover {
 }
 
 @media (max-width: 768px) {
-  /* #container {
-    flex-direction: column;
-    height: auto;
-    width: 90%;
-  } */
 
   .left-section {
     order: 2;
