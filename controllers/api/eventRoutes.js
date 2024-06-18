@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const User = require('../../models/users');
 const Event = require('../../models/events');
-//const Event = require('../../models/event-users');
 
 //Route to get ALL events
 router.get('/', async (req, res) => {
@@ -30,8 +28,15 @@ router.post('/', async (req, res) => {
     if (!req.body.name || !req.body.desc || !req.body.startDateTime || !req.body.endDateTime ){
       return res.status(400).json({ error: 'Missing required fields eventRoutes Line 31' });  
     }
-    const newEvent = await Event.create({name: req.body.name, desc: req.body.desc, startDateTime: req.body.startDateTime,
-                                         endDateTime: req.body.endDateTime, isPublic: req.body.isPublic, organizer_id: req.session.user_id});
+    const newEvent = await Event.create(
+      {name: req.body.name, 
+        desc: req.body.desc, 
+        startDateTime: req.body.startDateTime,
+        endDateTime: req.body.endDateTime, 
+        isPublic: req.body.isPublic, 
+        organizer_id: req.session.user_id
+      }
+    );
       req.session.save({
       ...req.body,
       event_id: req.session.event_id

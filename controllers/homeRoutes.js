@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const { log } = require('console');  IS THIS BEING USED?
 const { User, Event } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -58,21 +57,6 @@ try {
     res.status(500).json({ error: err.message });
   }
 
-  // try {
-  //   const client = await pool.connect();
-  //   const eventsQuery = `
-  //     SELECT * FROM events 
-  //     WHERE user_id = $1
-  //   `;
-  //   const eventsResult = await client.query(eventsQuery, [userId]);
-  //   client.release();
-
-  //   const events = eventsResult.rows;
-  //   res.json(events);
-  // } catch (err) {
-  //   console.error('Error fetching events:', err);
-  //   res.status(500).json({ error: 'Error fetching events' });
-  // }
 });
 
 // Use withAuth middleware to prevent access to route

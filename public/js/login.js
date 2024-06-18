@@ -36,7 +36,6 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        //alert("New user created.")
         document.location.replace('/profile');                 
       } else {
         alert(response.statusText);
