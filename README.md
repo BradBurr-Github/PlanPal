@@ -29,8 +29,8 @@ PlanPal allows many users with the ablility to plan activities and events togeth
 ## Usage
 Users will find our application to be very useful! Once logged in, you're instantly directed to a sleek, intuitive calendar interface where you can effortlessly create and manage events. Whether it's planning meetings, social gatherings, or personal reminders, PlanPal makes it simple to stay organized and on top of your schedule. Say goodbye to missed appointments and double bookings. PlanPal is your go-to solution for efficient and effective time management. Simplify your life, one event at a time.
 
-Github Repo:  https://github.com/BradBurr-Github/PlanPal
-Render Deployed Link: https://planpal-yz2w.onrender.com/
+- Github Repo:  https://github.com/BradBurr-Github/PlanPal
+- Render Deployed Link: https://planpal-yz2w.onrender.com/
 
 ![homepage](./assests/images/homepage.png)
 ![loginpage](./assests/images/loginpage.png)
